@@ -1,27 +1,16 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-import LTK from './component/profile';
-
+import Firstperson from './component/firstperson';
+import Secondperson from './component/secondperson';
 function App() {
+  const [mess1,setMess1]=useState('')
+  const [mess2,setMess2]=useState('')
+  console.log (mess1)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>  
-      </header>
-    <LTK/>
-    <LTK email="kienlee155@gmail.com" phone="0913088169"/>
-    <LTK  email="kienlee155@gmail.com" phone="0913088169" class="CNT4"/>
+    <div>
+    <Firstperson setMess1={setMess1} messFrom2={mess2}/>
+    <Secondperson messFrom1={mess1} setMess2={setMess2}/>
+    
     </div>
     
   );
