@@ -8,7 +8,7 @@ export default function Func_JSX_LeTrungKien(props) {
   return (
     <div>
       <h2>Function Component demo</h2>
-      <h3>Wellcome to {user.name}-{user.age}</h3>
+      <h3>Welcome to {user.name}-{user.age}</h3>
       <hr/>
       <h3>
         Props:
