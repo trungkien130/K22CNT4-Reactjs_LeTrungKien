@@ -21,7 +21,7 @@ function App() {
         <p>{forMatname(users)}</p>
       <p>FullName:{users.firstname} {users.lastname}</p>
         </div>
-      <div>
+      <div> 
         <LTK_Func/>
 
         <LTK_Func username="ltk" Fullname="Lê Trung Kiên" age="20" />
