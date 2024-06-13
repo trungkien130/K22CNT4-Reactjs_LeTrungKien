@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { instance } from '../Api/LtkAPI';
 import { useForm } from "react-hook-form";
+import { instance } from '../Api/LtkAPI';
 
-export default function LtkStudentEdit({ ltkStudent }) {
+export default function LtkStudentEdit({ ltkStudent, onEditSuccess }) {
     const { register, handleSubmit, setValue } = useForm();
 
     useEffect(() => {
@@ -19,9 +19,9 @@ export default function LtkStudentEdit({ ltkStudent }) {
         try {
             const response = await instance.put(`/LtkSTUDENTS/${ltkStudent.Ltkid}`, data);
             console.log('data:', response.data);
-            window.location.reload();
+            onEditSuccess();
         } catch (error) {
-            console.error('Error :', error);
+            console.error('Error:', error);
         }
     };
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-export default function LtkStudentList({ renderLtkStudentList, setLtkStudentList, setEditStudent }) {
+export default function LtkStudentList({ renderLtkStudentList, setLtkStudentList, onEditClick }) {
     // console.log(renderLtkStudentList)
 
     let ltkElement = renderLtkStudentList.map((ltkStudent, index) => {
@@ -15,7 +15,7 @@ export default function LtkStudentList({ renderLtkStudentList, setLtkStudentList
                 <td>{ltkStudent.LtkEmail}</td>
                 <td>{ltkStudent.LtkStatus ? 'Online' : 'Offline'}</td>
                 <td>
-                    <button onClick={() => setEditStudent(true)} className="btn btn-primary">Edit</button>
+                    <button onClick={() => onEditClick(ltkStudent)}>Edit</button>
                     <button onClick={() => ltkHandleDelete(ltkStudent.Ltkid)} className="btn btn-danger">Delete</button>
                 </td>
             </tr>

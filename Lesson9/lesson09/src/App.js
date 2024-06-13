@@ -1,32 +1,52 @@
-
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import LtkStudentList from './component/LtkStudentList';
-import axios from 'axios';
+import { instance } from './Api/LtkAPI';
 import LtkStudentCreate from './component/LtkStudentCreate';
 import LtkStudentEdit from './component/LtkStudentEdit';
 
 function App() {
-  const [editStudent, setEditStudent] = useState(false);
+  const [editStudent, setEditStudent] = useState(null);
   const [ltkStudentList, setLtkStudentList] = useState([]);
+
   const ltkGetStudent = async () => {
     try {
-      const response = await axios.get("https://666a97027013419182cfef1c.mockapi.io/api/ltkv1/LtkSTUDENTS");
+      const response = await instance.get("/LtkSTUDENTS");
       setLtkStudentList(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
-    ltkGetStudent()
-  }, [])
+    ltkGetStudent();
+  }, []);
+
+  const handleEditClick = (student) => {
+    setEditStudent(student);
+  };
+
+  const handleEditSuccess = () => {
+    setEditStudent(null);
+    ltkGetStudent();
+  };
+
   return (
     <div className="App">
-      <LtkStudentList renderLtkStudentList={ltkStudentList} setLtkStudentList={setLtkStudentList} setEditStudent={setEditStudent} />
+      <LtkStudentList
+        renderLtkStudentList={ltkStudentList}
+        setLtkStudentList={setLtkStudentList}
+        onEditClick={handleEditClick}
+      />
       <hr />
       <LtkStudentCreate />
       <hr />
-      {editStudent && <LtkStudentEdit ltkStudentList={ltkStudentList} />}
+      {editStudent && (
+        <LtkStudentEdit
+          ltkStudent={editStudent}
+          onEditSuccess={handleEditSuccess}
+        />
+      )}
     </div>
   );
 }
