@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 
 export default function LtkListProduct({ ListProduct }) {
+    const [products, setProducts] = useState(ListProduct);
+    const handleDelete = (index) => {
+        const newProducts = products.filter((_, i) => i !== index);
+        setProducts(newProducts);
+    };
     let ltkTong = 0
-    let ltkListProduct = ListProduct.map((item, index) => {
+    let ltkListProduct = products.map((item, index) => {
         ltkTong += item.Ltk_quantity * item.Ltk_price
         return (
             <>
@@ -15,7 +20,9 @@ export default function LtkListProduct({ ListProduct }) {
                     <td>{item.Ltk_quantity * item.Ltk_price}</td>
                     <td>
                         <button className='btn btn-success mx-1'><i className="fa-solid fa-pen-to-square"></i></button>
-                        <button className='btn btn-danger mx-1'><i className="fa-solid fa-trash"></i></button>
+                        <button className='btn btn-danger mx-1' onClick={() => handleDelete(index)}>
+                            <i className="fa-solid fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             </>

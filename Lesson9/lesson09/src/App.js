@@ -37,6 +37,7 @@ function App() {
         renderLtkStudentList={ltkStudentList}
         setLtkStudentList={setLtkStudentList}
         onEditClick={handleEditClick}
+        ltkGetStudent={ltkGetStudent}
       />
       <hr />
       <LtkStudentCreate />
@@ -45,6 +46,7 @@ function App() {
         <LtkStudentEdit
           ltkStudent={editStudent}
           onEditSuccess={handleEditSuccess}
+          ltkGetStudent={ltkGetStudent}
         />
       )}
     </div>

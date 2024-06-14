@@ -26,7 +26,7 @@ function LtkApp() {
   ]
   const [ltkListProduct, setLtkListProducts] = useState(Ltk_Products)
   const ltkHandleSubmit = (LtkProduct) => {
-    console.log("Add Or Edit", LtkProduct)
+    Ltk_Products.push(LtkProduct)
   }
   return (
     <div className="container border mt-5 p-3">

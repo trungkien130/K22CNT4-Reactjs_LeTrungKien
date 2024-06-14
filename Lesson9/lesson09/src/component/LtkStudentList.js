@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-export default function LtkStudentList({ renderLtkStudentList, setLtkStudentList, onEditClick }) {
+export default function LtkStudentList({ renderLtkStudentList, setLtkStudentList, onEditClick, ltkGetStudent }) {
     // console.log(renderLtkStudentList)
 
     let ltkElement = renderLtkStudentList.map((ltkStudent, index) => {
@@ -25,7 +25,7 @@ export default function LtkStudentList({ renderLtkStudentList, setLtkStudentList
         try {
             await axios.delete(`https://666a97027013419182cfef1c.mockapi.io/api/ltkv1/LtkSTUDENTS/${Ltkid}`);
             setLtkStudentList(prevList => prevList.filter(ltkStudent => ltkStudent.Ltkid !== Ltkid));
-            window.location.reload()
+            ltkGetStudent()
         } catch (error) {
             console.error("Error deleting data:", error);
         }
