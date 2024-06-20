@@ -3,7 +3,7 @@ import { instance } from '../Api/LtkAPI'
 import { useForm } from "react-hook-form";
 export default function LtkStudentCreate({ ltkGetStudent }) {
 
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
         try {
             const response = await instance.post('/LtkSTUDENTS', data);
