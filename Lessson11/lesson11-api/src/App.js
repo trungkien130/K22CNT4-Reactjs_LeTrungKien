@@ -9,14 +9,14 @@ function App() {
   const [ltkCategoryList, setLtkCategoryList] = useState([])
   const [ltkCategoryIsForm, setLtkCategoryIsForm] = useState(false)
   const [ltkCategoryEditForm, setLtkCategoryEditForm] = useState(false)
-  const [editStudent, setEditStudent] = useState(null);
+  const [editCategory, setEditCategory] = useState(null);
 
-  const handleEditClick = (student) => {
-    setEditStudent(student);
+  const handleEditClick = (Category) => {
+    setEditCategory(Category);
   };
 
   const handleEditSuccess = () => {
-    setEditStudent(null);
+    setEditCategory(null);
   };
 
   const getCategories = async () => {
@@ -36,7 +36,7 @@ function App() {
       <h1>Lê Trung Kiên - Call Api</h1>
       <LtkCategoryList renderLtkCategories={ltkCategoryList} openForm={setLtkCategoryIsForm} getCategories={getCategories} onEditClick={handleEditClick} openEditForm={setLtkCategoryEditForm} />
       {ltkCategoryIsForm && <LtkCategoryForm closeForm={setLtkCategoryIsForm} getCategories={getCategories} />}
-      {ltkCategoryEditForm && <LtkCategoryEditForm closeForm={setLtkCategoryEditForm} getData={getCategories} ltkStudent={editStudent} onEditSuccess={handleEditSuccess} />}
+      {ltkCategoryEditForm && <LtkCategoryEditForm closeForm={setLtkCategoryEditForm} getData={getCategories} ltkCategory={editCategory} onEditSuccess={handleEditSuccess} />}
     </div>
   );
 }

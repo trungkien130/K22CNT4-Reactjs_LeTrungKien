@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { instance } from '../api/LtkApi';
 
-export default function LtkCategoryEditForm({ closeForm, getData, ltkStudent }) {
+export default function LtkCategoryEditForm({ closeForm, getData, ltkCategory }) {
     const [ltkCategoryName, setLtkCategoryName] = useState("");
     const [ltkCategoryStatus, setLtkCategoryStatus] = useState(true);
     const [ltkCategoryId, setltkCategoryId] = useState(0);
 
     useEffect(() => {
-        if (ltkStudent) {
-            setltkCategoryId(ltkStudent.ltkid);
-            setLtkCategoryName(ltkStudent.ltkCategoryName);
-            setLtkCategoryStatus(ltkStudent.ltkCategoryStatus);
+        if (ltkCategory) {
+            setltkCategoryId(ltkCategory.ltkid);
+            setLtkCategoryName(ltkCategory.ltkCategoryName);
+            setLtkCategoryStatus(ltkCategory.ltkCategoryStatus);
         }
-    }, [ltkStudent]);
+    }, [ltkCategory]);
 
     const ltkHandleSubmit = async (event) => {
         event.preventDefault();
@@ -22,7 +22,7 @@ export default function LtkCategoryEditForm({ closeForm, getData, ltkStudent }) 
             ltkCategoryStatus: ltkCategoryStatus
         };
         try {
-            await instance.put(`/LtkCategory/${ltkStudent.ltkid}`, ltkCategory);
+            await instance.put(`/LtkCategory/${ltkCategory.ltkId}`, ltkCategory);
             getData();
             closeForm(false);
             console.log(ltkCategory);
